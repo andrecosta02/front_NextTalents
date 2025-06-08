@@ -1,0 +1,143 @@
+
+.container {
+  min-height: 100vh;
+  background-color: #f0f0f0;
+  background-size: contain;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* background-image: url('../../public/fundo.png'); */
+  /* background-repeat: repeat; */
+}
+
+.header {
+  width: 100%;
+  background-color: white;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  /* background-image: url('../../public/fundo.png'); */
+  /* background-repeat: repeat; */
+}
+
+.logo {
+  height: 50px;
+  margin-right: 1rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2d3748;
+}
+
+.main {
+  background-color: #9ae6b4;
+  width: 97%;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.welcome {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #22543d;
+  margin-bottom: 0.5rem;
+}
+
+.description {
+  text-align: justify;
+  color: #22543d;
+  margin-bottom: 2rem;
+  max-width: 800px;
+}
+
+.highlight {
+  font-weight: bold;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  max-width: 800px;
+}
+
+.card {
+  background-color: #f0fff4;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-image {
+  width: 180px;
+  height: 220px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.card-title {
+  font-weight: bold;
+  color: #2d3748;
+  margin: 0;
+  text-align: center; /* CENTRALIZADO */
+  font-size: 18px;
+}
+
+
+.how-it-works {
+  border-radius: 8px;
+  padding: 30px 20px;
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.how-it-works h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #2c3e50;
+}
+
+.workflow {
+  /* width: 80%; */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.workflow-step {
+  background-color: #ffffff;
+  padding: 20px;
+  border-left: 4px solid #2e7d32;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.workflow-step strong {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #2c3e50;
+}
+
+.workflow-step ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #555;
+}

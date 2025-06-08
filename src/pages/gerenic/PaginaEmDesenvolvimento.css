@@ -1,0 +1,40 @@
+
+.dev-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  background-color: #f0f4f8;
+  font-family: 'Arial', sans-serif;
+}
+
+.dev-header {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.logo {
+  height: 50px;
+}
+
+.dev-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.dev-robot {
+  width: 300px;
+  height: auto;
+  opacity: 0.9;
+}
+
+.dev-text {
+  font-size: 30px;
+  color: #333;
+  font-weight: bold;
+}
