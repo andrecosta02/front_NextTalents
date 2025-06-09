@@ -1,0 +1,52 @@
+name: Front Nexttalents - Push-to-EC2 CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - closed
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Chechout code
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.x'
+
+      - name: Install npm dependencies
+        run: npm install
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build Docker image
+        run: docker build -t front-nexttalents:latest .
+      - name: Tag Docker image
+        run: docker tag front-nexttalents:latest ${{ secrets.DOCKER_USERNAME }}/front-nexttalents:latest
+      - name: Push Docker image
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/front-nexttalents:latest
+
+      - name: Deploy to EC2 instance
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{secrets.REMOTE_HOST}}
+          username: "ec2-user"
+          key: ${{secrets.EC2_SSH_KEY}}
+          script: |
+            docker stop front-nexttalents || true
+            docker rm front-nexttalents || true
+            docker pull ${{ secrets.DOCKER_USERNAME }}/front-nexttalents
+            docker run --restart=always -d --name front-nexttalents -p 3000:3000 ${{ secrets.DOCKER_USERNAME }}/front-nexttalents
+            docker cp nextTalents/back/variable.env front-nexttalents:/home/node/app
+            docker cp nextTalents/front/.env front-nexttalents:/home/node/app
+

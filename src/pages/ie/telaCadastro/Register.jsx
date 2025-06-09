@@ -91,7 +91,8 @@ const Register = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:8080/nexttalents/ie/register", {
+      const url = `http://${process.env.REACT_APP_IP_SERVER}:${process.env.REACT_APP_PORT_SERVER}/nexttalents/ie/register`;
+      const res = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
