@@ -110,7 +110,7 @@ const Register = () => {
         setTimeout(() => {
           setShowPopup(false);
           setMessage("");
-          navigate("/aluno/login");
+          navigate("/ie/login");
         }, 8000);
       } else if (res.status === 422 && data.errors) {
         setPopupType("error");
