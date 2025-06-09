@@ -26,8 +26,8 @@ const Dashboard = () => {
     switch (selectedMenu) {
       case "sobre":
         return <div><h2>Sobre Mim</h2><p>Informações do aluno para empresas (bio, experiências, etc.).</p></div>;
-      case "meus":
-        return <div><h2>Meus Projetos</h2><p>Seus projetos listados aqui.</p></div>;
+      case "aluno":
+        return ;
       case "geral":
         return <div><h2>Projetos Geral</h2><p>Todos os projetos públicos.</p></div>;
       case "instituicoes":
@@ -58,7 +58,7 @@ const Dashboard = () => {
         </button>
 
         <div className="menu-section">
-          <button className="menu-item" onClick={() => setSelectedMenu("sobre")}>
+          <button className="menu-item" onClick={() => navigate("/ie/Aluno")}>
             <span className="icon">📄</span>
             <span className="text">Alunos</span>
           </button>

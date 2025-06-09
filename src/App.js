@@ -18,6 +18,7 @@ import IeConfirmaEmail from './pages/ie/confirmaEmail/confirmaEmail';
 import IeTelaLogin from './pages/ie/telaLogin/LoginPage';
 import IeNovaSenhaPage from './pages/ie/novaSenha/novaSenhaPage';
 import IeDashboard from './pages/ie/dashboard/dashboard';
+import IeAluno from './pages/ie/Aluno/Aluno';
 
 function App() {
   return (
@@ -55,7 +56,14 @@ function App() {
             </PrivateRoute>
           }
         />
-
+        <Route
+          path="/ie/Aluno"
+          element={
+            <PrivateRoute>
+              <IeAluno />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </Router>
   );
