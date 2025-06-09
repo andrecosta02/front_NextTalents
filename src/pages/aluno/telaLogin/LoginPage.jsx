@@ -16,7 +16,8 @@ const LoginPage = () => {
   const handleLogin = async () => {
     try {
       let pass = senha
-      const response = await fetch('http://localhost:8080/nexttalents/student/login', {
+      const url = `http://${process.env.REACT_APP_IP_SERVER}:${process.env.REACT_APP_PORT_SERVER}/nexttalents/student/login`;
+      const response = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, pass }),
@@ -50,7 +51,8 @@ const LoginPage = () => {
 
   const handleForgtPass = async () => {
     try {
-      const response = await fetch('http://localhost:8080/nexttalents/student/forgot-pass ', {
+      const url = `http://${process.env.REACT_APP_IP_SERVER}:${process.env.REACT_APP_PORT_SERVER}/nexttalents/student/forgot-pass`;
+      const response = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
