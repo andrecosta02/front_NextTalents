@@ -58,6 +58,7 @@ const LoginPage = () => {
         body: JSON.stringify({ email }),
       });
 
+      
       console.log(response)
 
       if (response.ok) {
