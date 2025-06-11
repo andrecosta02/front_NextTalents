@@ -1,8 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
+import PopupMessage from "../../../../components/PopupMessage";
 import "./aluno.css";
 
 const AlunoCrud = () => {
   const overlayRef = useRef(null);
+
+  const [mensagem, setMensagem] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupType, setPopupType] = useState("success"); // ou "error"
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+
   const [students, setStudents] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -18,11 +26,11 @@ const AlunoCrud = () => {
     description: ""
   });
 
+
   const fetchStudents = async () => {
     try {
-      const res = await fetch(
-        `http://${process.env.REACT_APP_IP_SERVER}:${process.env.REACT_APP_PORT_SERVER}/nextTalents/student/list`
-      );
+      const url = `http://${process.env.REACT_APP_IP_SERVER}:${process.env.REACT_APP_PORT_SERVER}/nextTalents/student/list`
+      const res = await fetch(url);
       const data = await res.json();
       setStudents(data);
     } catch (err) {
@@ -69,16 +77,32 @@ const AlunoCrud = () => {
     const endpoint = isEditing ? "update" : "register";
     const method = isEditing ? "PUT" : "POST";
     try {
-      await fetch(
-        `http://${process.env.REACT_APP_IP_SERVER}:${process.env.REACT_APP_PORT_SERVER}/nextTalents/student/${endpoint}`,
+        const url = `http://${process.env.REACT_APP_IP_SERVER}:${process.env.REACT_APP_PORT_SERVER}/nextTalents/student/${endpoint}`;
+        const response = await fetch( url,
         {
           method,
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ ...formData, birth: formData.birth.replace(/-/g, "") })
         }
       );
-      fetchStudents();
-      closeModal();
+
+      console.log(response)
+
+      if (response.ok) {
+        // setMensagem('se existir cadastro um email sera enviado');
+
+        setPopupType("success");
+        setShowPopup(true);
+        setTimeout(() => {
+          setShowPopup(false);
+        }, 5000);
+        
+        fetchStudents();
+        closeModal();
+      } else {
+        setMensagem('Erro no cadastro do aluno.');
+      }
+
     } catch (err) {
       console.error(`Erro ao ${isEditing ? "atualizar" : "cadastrar"} aluno:`, err);
     }
@@ -88,8 +112,8 @@ const AlunoCrud = () => {
     if (!isEditing) return;
     if (window.confirm("Tem certeza que deseja excluir este aluno?")) {
       try {
-        await fetch(
-          `http://${process.env.REACT_APP_IP_SERVER}:${process.env.REACT_APP_PORT_SERVER}/nextTalents/student/delete`,
+        const url = `http://${process.env.REACT_APP_IP_SERVER}:${process.env.REACT_APP_PORT_SERVER}/nextTalents/student/delete`;
+        const response = await fetch( url,
           { method: "DELETE", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: formData.id }) }
         );
         fetchStudents();
@@ -149,6 +173,12 @@ const AlunoCrud = () => {
           </div>
         </div>
       )}
+
+      <PopupMessage
+        type={popupType}
+        message={message}
+        onClose={() => setShowPopup(false)}
+      />
     </div>
   );
 };
