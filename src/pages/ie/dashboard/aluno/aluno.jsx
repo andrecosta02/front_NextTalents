@@ -77,13 +77,13 @@ const AlunoCrud = () => {
     const endpoint = isEditing ? "update" : "register";
     const method = isEditing ? "PUT" : "POST";
     try {
-        const url = `http://${process.env.REACT_APP_IP_SERVER}:${process.env.REACT_APP_PORT_SERVER}/nextTalents/student/${endpoint}`;
-        const response = await fetch( url,
-        {
-          method,
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ ...formData, birth: formData.birth.replace(/-/g, "") })
-        }
+      const url = `http://${process.env.REACT_APP_IP_SERVER}:${process.env.REACT_APP_PORT_SERVER}/nextTalents/student/${endpoint}`;
+      const response = await fetch( url,
+      {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, birth: formData.birth.replace(/-/g, "") })
+      }
       );
 
       console.log(response)
