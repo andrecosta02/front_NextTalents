@@ -4,11 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { getLoggedUser } from "../../../utils/auth";
 // import "./dashboard.css";
 import "./dashboard.css";
+import AlunoCrud from "./aluno/aluno";
+
 
 const Dashboard = () => {
   const user = getLoggedUser();
   const navigate = useNavigate();
-  const [selectedMenu, setSelectedMenu] = useState("sobre");
+  // const [selectedMenu, setSelectedMenu] = useState("sobre");
+  const [selectedMenu, setSelectedMenu] = useState("alunos");
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -24,10 +27,12 @@ const Dashboard = () => {
 
   const renderContent = () => {
     switch (selectedMenu) {
-      case "sobre":
-        return <div><h2>Sobre Mim</h2><p>Informações do aluno para empresas (bio, experiências, etc.).</p></div>;
-      case "aluno":
-        return ;
+      // case "sobre":
+      //   return <div><h2>Sobre Mim</h2><p>Informações do aluno para empresas (bio, experiências, etc.).</p></div>;
+      case "alunos":
+        return <AlunoCrud />;
+      case "meus":
+        return <div><h2>Meus Projetos</h2><p>Seus projetos listados aqui.</p></div>;
       case "geral":
         return <div><h2>Projetos Geral</h2><p>Todos os projetos públicos.</p></div>;
       case "instituicoes":
@@ -58,7 +63,9 @@ const Dashboard = () => {
         </button>
 
         <div className="menu-section">
-          <button className="menu-item" onClick={() => navigate("/ie/Aluno")}>
+          {/* <button className="menu-item" onClick={() => setSelectedMenu("sobre")}> */}
+          <button className="menu-item" onClick={() => setSelectedMenu("alunos")}>
+            
             <span className="icon">📄</span>
             <span className="text">Alunos</span>
           </button>
