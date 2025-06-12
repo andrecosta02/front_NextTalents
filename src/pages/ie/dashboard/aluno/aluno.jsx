@@ -11,7 +11,6 @@ const AlunoCrud = () => {
     name: "",
     last_name: "",
     email: "",
-    birth: "",
     cpf: "",
     cep: "",
     city: "",
@@ -35,7 +34,7 @@ const AlunoCrud = () => {
   }, []);
 
   const openModalForCreate = () => {
-    setFormData({ id: null, name: "", last_name: "", email: "", birth: "", cpf: "", cep: "", city: "", description: "" });
+    setFormData({ id: null, name: "", last_name: "", email: "", cpf: "", cep: "", city: "", description: "" });
     setIsEditing(false);
     setModalOpen(true);
   };
@@ -56,9 +55,11 @@ const AlunoCrud = () => {
     const { name, value } = e.target;
     if (name === "cpf") {
       let v = value.replace(/\D/g, "").slice(0, 11);
-      v = v.replace(/(\d{3})(\d)/, "$1.$2");
-      v = v.replace(/(\d{3})(\d)/, "$1.$2");
-      v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+      v = v.replace(/[.\-]/g, "");
+
+      // v = v.replace(/(\d{3})(\d)/, "$1.$2");
+      // v = v.replace(/(\d{3})(\d)/, "$1.$2");
+      // v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
       setFormData((prev) => ({ ...prev, cpf: v }));
     } else {
       setFormData((prev) => ({ ...prev, [name]: value }));
@@ -74,9 +75,11 @@ const AlunoCrud = () => {
       {
         method,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, birth: formData.birth.replace(/-/g, "") })
+        body: JSON.stringify({ ...formData, cpf: formData.cpf.replace(/[.\-]/g, "")})
       }
       );
+      console.log(response);
+      console.log(formData);
       fetchStudents();
       closeModal();
     } catch (err) {
@@ -119,7 +122,6 @@ const AlunoCrud = () => {
               <img src="/aluno.png" alt="Aluno" className="card-img" />
               <p><strong>Nome:</strong> {student.name} {student.last_name}</p>
               <p><strong>Email:</strong> {student.email}</p>
-              <p><strong>Nascimento:</strong> {new Date(student.birth).toLocaleDateString()}</p>
               <p><strong>Cidade:</strong> {student.city} (<strong>CEP:</strong> {student.cep})</p>
               <p><strong>Descrição:</strong> {student.description}</p>
             </div>
@@ -135,7 +137,6 @@ const AlunoCrud = () => {
               <input name="name" placeholder="Nome" value={formData.name} onChange={handleChange} />
               <input name="last_name" placeholder="Sobrenome" value={formData.last_name} onChange={handleChange} />
               <input name="email" type="email" placeholder="Email" value={formData.email} onChange={handleChange} />
-              <input name="birth" type="date" placeholder="Nascimento" value={formData.birth} onChange={handleChange} />
               <input name="cpf" placeholder="CPF" value={formData.cpf} onChange={handleChange} />
               <input name="cep" placeholder="CEP" value={formData.cep} onChange={handleChange} />
               <input name="city" placeholder="Cidade" value={formData.city} onChange={handleChange} />
