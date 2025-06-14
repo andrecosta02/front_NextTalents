@@ -33,7 +33,7 @@ export default function TelaInicio() {
             <span className="card-title">Instituição de Ensino</span>
           </div>
 
-          <div className="card" onClick={() => navigate("/desenvolvimento")} style={{ cursor: "pointer" }}>
+          <div className="card" onClick={() => navigate("/empresa/login")} style={{ cursor: "pointer" }}>
             <img src="/empresa.png" alt="Empresa Parceira" className="card-image" />
             <span className="card-title">Empresa Parceira</span>
           </div>

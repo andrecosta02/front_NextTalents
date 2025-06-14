@@ -1,0 +1,34 @@
+.confirm-email-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #eef8f4;
+    font-family: Arial, sans-serif;
+  }
+  
+  .confirm-box {
+    background-color: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    font-size: 18px;
+  }
+  
+  .confirm-box.success {
+    border-left: 6px solid #5bb38b;
+    color: #2e6652;
+  }
+  
+  .confirm-box.error {
+    border-left: 6px solid #d9534f;
+    color: #a94442;
+  }
+  
+  .confirm-box p {
+    margin: 0;
+  }
+  

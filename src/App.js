@@ -19,6 +19,13 @@ import IeTelaLogin from './pages/ie/telaLogin/LoginPage';
 import IeNovaSenhaPage from './pages/ie/novaSenha/novaSenhaPage';
 import IeDashboard from './pages/ie/dashboard/dashboard';
 
+// Imports da empresa
+import empresaRegister from './pages/empresa/telaCadastro/Register';
+import empresaConfirmaEmail from './pages/empresa/confirmaEmail/confirmaEmail';
+import empresaTelaLogin from './pages/empresa/telaLogin/LoginPage';
+import empresaNovaSenhaPage from './pages/empresa/novaSenha/novaSenhaPage';
+import empresaDashboard from './pages/empresa/dashboard/dashboard';
+
 function App() {
   return (
     <Router>
@@ -43,7 +50,7 @@ function App() {
 
         {/* Rotas da Instituição de Ensino */}
         <Route path="/ie/register" element={< IeRegister />} />
-          <Route path="/ie/confirma-email" element={< IeConfirmaEmail />} />
+        <Route path="/ie/confirma-email" element={< IeConfirmaEmail />} />
         <Route path="/ie/login" element={< IeTelaLogin />} />
         <Route path="/ie/reset-senha" element={< IeNovaSenhaPage />} />
         {/* <Route path="/dashboard" element={<Dashboard />} /> */}
@@ -55,7 +62,18 @@ function App() {
             </PrivateRoute>
           }
         />
-
+        {/* Rotas da empresa */}
+        <Route path="/empresa/register" element={< empresaRegister />} />
+        <Route path="/empresa/confirma-email" element={< empresaConfirmaEmail />} />
+        <Route path="/empresa/login" element={< empresaTelaLogin />} />
+        <Route path="/empresa/reset-senha" element={< empresaNovaSenhaPage />} />
+        {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+        <Route path="/empresa/dashboard" element={
+          <PrivateRoute>
+             <empresaDashboard />
+          </PrivateRoute>
+          }
+        />
       </Routes>
     </Router>
   );
