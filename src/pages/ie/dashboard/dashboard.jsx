@@ -5,7 +5,7 @@ import { getLoggedUser } from "../../../utils/auth";
 // import "./dashboard.css";
 import "./dashboard.css";
 import AlunoCrud from "./aluno/aluno";
-
+import Perfil from "./perfil/perfil";
 
 const Dashboard = () => {
   const user = getLoggedUser();
@@ -27,20 +27,10 @@ const Dashboard = () => {
 
   const renderContent = () => {
     switch (selectedMenu) {
-      // case "sobre":
-      //   return <div><h2>Sobre Mim</h2><p>Informações do aluno para empresas (bio, experiências, etc.).</p></div>;
       case "alunos":
         return <AlunoCrud />;
-      case "meus":
-        return <div><h2>Meus Projetos</h2><p>Seus projetos listados aqui.</p></div>;
-      case "geral":
-        return <div><h2>Projetos Geral</h2><p>Todos os projetos públicos.</p></div>;
-      case "instituicoes":
-        return <div><h2>Instituições</h2><p>Lista de instituições cadastradas na plataforma.</p></div>;
-      case "empresas":
-        return <div><h2>Empresas</h2><p>Empresas disponíveis no sistema.</p></div>;
       case "perfil":
-        return <div><h2>Meu Perfil</h2><p>Editar informações de cadastro do usuário (email, senha, notificações).</p></div>;
+        return <Perfil />
       default:
         return null;
     }
