@@ -156,20 +156,15 @@ const Register = () => {
       </a>
       <form className="register-form" onSubmit={handleSubmit}>
         <h2>Criar Conta</h2>
-        {/* <div className="input-row"> */}
         <input type="text" name="name" placeholder="Nome" value={formData.name} onChange={handleChange} required />
         <input type="text" name="unit" placeholder="Unidade" value={formData.unit} onChange={handleChange} required />
-          {/* <input type="text" name="last_name" placeholder="Sobrenome" value={formData.last_name} onChange={handleChange} required /> */}
-        {/* </div> */}
         <input type="email" name="email" placeholder="E-mail" value={formData.email} onChange={handleChange} required />
-        {/* <input type="date" name="birth" placeholder="Data de Nascimento" value={formData.birth} onChange={handleChange} required /> */}
         <div className="input-row">
           <input type="password" name="pass" placeholder="Senha" value={formData.pass} onChange={handleChange} required />
           <input type="password" name="confirmPass" placeholder="Confirmar Senha" value={formData.confirmPass} onChange={handleChange} required />
         </div>
         <InputMask mask="99.999.999/9999-99" name="cnpj" placeholder="CNPJ" value={formData.cnpj} onChange={handleChange} required />
-        {/* <InputMask mask="99999-999" name="cep" placeholder="CEP" value={formData.cep} onChange={handleChange} required /> */}
-        {/* <input type="text" name="city" placeholder="Cidade" value={formData.city} onChange={handleChange} required /> */}
+
 
         <div className="g-recaptcha" data-sitekey="6Ld2DC0rAAAAACZIrYP3fBSXGzNQ9_i5K1aSxtFr" data-callback="handleCaptchaVerify" data-expired-callback="handleCaptchaExpired" style={{ marginBottom: "15px" }}></div>
 
