@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
+import PopupMessage from "../../../../components/PopupMessage";
+import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 import "./aluno.css";
 
 const AlunoCrud = () => {
@@ -6,6 +9,12 @@ const AlunoCrud = () => {
   const [students, setStudents] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupType, setPopupType] = useState("success");
+  const [message, setMessage] = useState("");
+  // const [token, setToken] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     id: null,
     name: "",
@@ -17,12 +26,22 @@ const AlunoCrud = () => {
     city: "",
     description: ""
   });
+  const token = localStorage.getItem("token")
 
   const fetchStudents = async () => {
     try {
-      const res = await fetch(
-        `http://${process.env.REACT_APP_IP_SERVER}:${process.env.REACT_APP_PORT_SERVER}/nextTalents/student/list`
-      );
+
+      const url = `http://${process.env.REACT_APP_IP_SERVER}:${process.env.REACT_APP_PORT_SERVER}/nextTalents/student/list`
+      const res = await fetch(url, {
+        method: 'get',
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": `Bearer ${token}`
+        }
+      });
+
+
       const data = await res.json();
       setStudents(data);
     } catch (err) {
@@ -65,22 +84,91 @@ const AlunoCrud = () => {
     }
   };
 
-  const handleSave = async () => {
+  const formatBirth = (date) => date.replaceAll("-", "");
+  const formatCPF = (cpf) => cpf.replace(/\D/g, "");
+  const formatCEP = (cep) => cep.replace(/\D/g, "");
+
+  const handleSubmit = async (e) => {
     const endpoint = isEditing ? "update" : "register";
     const method = isEditing ? "PUT" : "POST";
+    e.preventDefault();
+    if (showPopup) return;
+
+    setMessage("");
+    setError("");
+
+    const payload = {
+      name: formData.name,
+      last_name: formData.last_name,
+      email: formData.email,
+      birth: formatBirth(formData.birth),
+      cpf: formatCPF(formData.cpf),
+      cep: formatCEP(formData.cep),
+      city: formData.city,
+      description: formData.description
+    };
+
     try {
-      const url = `http://${process.env.REACT_APP_IP_SERVER}:${process.env.REACT_APP_PORT_SERVER}/nextTalents/student/${endpoint}`;
-      const response = await fetch( url,
-      {
+      // setToken(localStorage.getItem("token"))
+      // setToken(localStorage.getItem("token"))
+      // const url = `http://${process.env.REACT_APP_IP_SERVER}:${process.env.REACT_APP_PORT_SERVER}/nexttalents/student/register`;
+      const aux = isEditing ? `/${formData.id}` : ""
+      const url = `http://${process.env.REACT_APP_IP_SERVER}:${process.env.REACT_APP_PORT_SERVER}/nextTalents/student/${endpoint}${aux}`;
+      console.log(token)
+      const res = await fetch(url, {
         method,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, birth: formData.birth.replace(/-/g, "") })
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await res.json();
+      console.log(url);
+      console.log(data);
+      console.log(res.status)
+      console.log(formData.id)
+
+      if (res.status > 200 && res.status < 299) {
+        setPopupType("success");
+        if (isEditing) {
+          setMessage("Atualização realizada com sucesso!");
+        } else {
+          setMessage("Cadastro realizado, aluno deve confirmar cadastro no email!");
+        }
+        closeModal();
+        setShowPopup(true);
+        setTimeout(() => {
+          setShowPopup(false);
+          setMessage("");
+        }, 8000);
+        fetchStudents();
+      } else if (res.status === 422 && data.errors) {
+        setPopupType("error");
+        setMessage(data.errors[0].msg);
+        setShowPopup(true);
+        setTimeout(() => {
+          setShowPopup(false);
+          setMessage("");
+        }, 10000);
+      } else {
+        setPopupType("error");
+        setMessage("Erro ao cadastrar. Entre em contato com o suporte.");
+        setShowPopup(true);
+        setTimeout(() => {
+          setShowPopup(false);
+          setMessage("");
+        }, 10000);
       }
-      );
-      fetchStudents();
-      closeModal();
     } catch (err) {
-      console.error(`Erro ao ${isEditing ? "atualizar" : "cadastrar"} aluno:`, err);
+      setPopupType("error");
+      setMessage("Erro de conexão com o servidor.");
+      setShowPopup(true);
+      setTimeout(() => {
+        setShowPopup(false);
+        setMessage("");
+      }, 10000);
     }
   };
 
@@ -88,10 +176,24 @@ const AlunoCrud = () => {
     if (!isEditing) return;
     if (window.confirm("Tem certeza que deseja excluir este aluno?")) {
       try {
-        await fetch(
-          `http://${process.env.REACT_APP_IP_SERVER}:${process.env.REACT_APP_PORT_SERVER}/nextTalents/student/delete`,
-          { method: "DELETE", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: formData.id }) }
-        );
+        console.log(token)
+        const url = `http://${process.env.REACT_APP_IP_SERVER}:${process.env.REACT_APP_PORT_SERVER}/nextTalents/student/delete/${formData.id}`
+        const res = await fetch(url, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+          }
+        });
+
+        setPopupType("success");
+        setMessage("Aluno deletado com sucesso!");
+        setShowPopup(true);
+        setTimeout(() => {
+          setShowPopup(false);
+          setMessage("");
+        }, 8000);
+
         fetchStudents();
         closeModal();
       } catch (err) {
@@ -144,11 +246,16 @@ const AlunoCrud = () => {
             <div className="modal-footer">
               {isEditing && <button onClick={handleDelete} className="btn-delete">Excluir</button>}
               <button onClick={closeModal} className="btn-cancel">Cancelar</button>
-              <button onClick={handleSave} className="btn-save">{isEditing ? "Salvar" : "Cadastrar"}</button>
+              <button onClick={handleSubmit} className="btn-save">{isEditing ? "Salvar" : "Cadastrar"}</button>
             </div>
           </div>
         </div>
       )}
+
+      <PopupMessage type={popupType} message={message} onClose={() => {
+        setShowPopup(false);
+        setMessage("");
+      }} />
     </div>
   );
 };
