@@ -47,22 +47,24 @@ export default function TelaInicio() {
             <div className="workflow-step">
               <strong>🏫 A instituição de ensino:</strong>
               <ul>
-                <li>Valida o que o jovem criou</li>
-                <li>Fornece um selo ou certificado de qualidade</li>
-                <li>Orienta e Cadastra os alunos a evoluírem</li>
+                <li>Procura por jovens talentos</li>
+                <li>Fornece ao Jovem bolsas de estudos</li>
+                <li>Orienta e Cadastra os alunos na plataforma</li>
               </ul>
             </div>
             <div className="workflow-step">
-              <strong>💼 Os chefes:</strong>
+              <strong>💼 As Empresas:</strong>
               <ul>
-                <li>Recebem talentos já testados e certificados</li>
+                <li>Recebem os jovens talentos das Instituições</li>
                 <li>Contrata alunos para estágios ou demandas</li>
-                <li>Mentoram alunos ou lançam demandas reais</li>
+                <li>Contribuem para o crescimento do aluno</li>
               </ul>
             </div>
           </div>
-          <iframe src="demo_iframe.htm" height="300px" width="100%" name="iframe_a" title="Iframe Example"></iframe>
-          <p><a href="https://www.youtube.com/watch?v=HezKd8CNbVs" target="iframe_a">ProjetoNexTalents</a></p>
+          <br />
+          {/* <iframe src="https://www.youtube.com/watch?v=HezKd8CNbVs" height="300px" width="100%" name="iframe_a" title="Iframe Example"></iframe> */}
+          {/* <p><a href="https://www.youtube.com/watch?v=HezKd8CNbVs" target="iframe_a">ProjetoNexTalents</a></p> */}
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/HezKd8CNbVs?si=nIOYT-vBWx7hYEse" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
         </section>
     </div>
