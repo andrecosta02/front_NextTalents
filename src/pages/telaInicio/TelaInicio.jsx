@@ -45,37 +45,25 @@ export default function TelaInicio() {
           <h3>Como funciona a plataforma?</h3>
           <div className="workflow">
             <div className="workflow-step">
-              <strong>👩‍🎓 O jovem:</strong>
-              <ul>
-                <li>Se cadastra no sistema</li>
-                <li>Cria um protótipo, projeto, solução ou produto</li>
-                <li>Exemplos: campanha de marketing, modelo de app, proposta de inovação...</li>
-              </ul>
-            </div>
-            <div className="workflow-step">
               <strong>🏫 A instituição de ensino:</strong>
               <ul>
                 <li>Valida o que o jovem criou</li>
                 <li>Fornece um selo ou certificado de qualidade</li>
-                <li>Orienta e ajuda os alunos a evoluírem</li>
-              </ul>
-            </div>
-            <div className="workflow-step">
-              <strong>🏢 O RH / empresa:</strong>
-              <ul>
-                <li>Avalia os projetos e compra soluções prontas</li>
-                <li>Contrata alunos para estágios ou demandas</li>
-                <li>Lança desafios reais para os jovens resolverem</li>
+                <li>Orienta e Cadastra os alunos a evoluírem</li>
               </ul>
             </div>
             <div className="workflow-step">
               <strong>💼 Os chefes:</strong>
               <ul>
                 <li>Recebem talentos já testados e certificados</li>
+                <li>Contrata alunos para estágios ou demandas</li>
                 <li>Mentoram alunos ou lançam demandas reais</li>
               </ul>
             </div>
           </div>
+          <iframe src="demo_iframe.htm" height="300px" width="100%" name="iframe_a" title="Iframe Example"></iframe>
+          <p><a href="https://www.youtube.com/watch?v=HezKd8CNbVs" target="iframe_a">ProjetoNexTalents</a></p>
+
         </section>
     </div>
   );
