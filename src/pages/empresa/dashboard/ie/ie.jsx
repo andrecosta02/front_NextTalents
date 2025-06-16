@@ -2,9 +2,9 @@
 import React, { useState, useEffect } from "react";
 import PopupMessage from "../../../../components/popupMessage/PopupMessage";
 import FormModal from "../../../../components/formModal/FormModal";
-import "./empresas.css";
+import "./ie.css";
 
-const Empresa = () => {
+const Ie = () => {
   const [infos, setInfos] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -13,9 +13,9 @@ const Empresa = () => {
   const [message, setMessage] = useState("");
   const token = localStorage.getItem("token");
 
-  const fetchEmpresas = async () => {
+  const fetchIe = async () => {
     try {
-      const url = `http://${process.env.REACT_APP_IP_SERVER}:${process.env.REACT_APP_PORT_SERVER}/nextTalents/enterprise/list`;
+      const url = `http://${process.env.REACT_APP_IP_SERVER}:${process.env.REACT_APP_PORT_SERVER}/nextTalents/ie/list`;
       const res = await fetch(url, {
         method: "get",
         headers: {
@@ -27,12 +27,12 @@ const Empresa = () => {
       const dataRes = await res.json();
       setInfos(dataRes);
     } catch (err) {
-      console.error("Erro ao buscar empresas:", err);
+      console.error("Erro ao buscar IE's:", err);
     }
   };
 
   useEffect(() => {
-    fetchEmpresas();
+    fetchIe();
   }, []);
 
   const openModalForEdit = (data) => {
@@ -60,17 +60,17 @@ const Empresa = () => {
 
   return (
     <div className="aluno-crud">
-      <h2>Empresas parceiras</h2>
+      <h2>Instituições de Ensino disponíveis</h2>
 
       <div className="cards">
         {infos.map((data) => (
           <div key={data.id} className="card" onClick={() => openModalForEdit(data)}>
-            <img src="/empresa.png" alt="Aluno" className="card-img" />
+            <img src="/instituicao.png" alt="instituicao" className="card-img" />
             <p><strong>Nome:</strong> {data.nome}</p>
             <p><strong>Unidade:</strong> {data.unit}</p>
             <p><strong>Email:</strong> {data.email}</p>
             <p><strong>Telefone:</strong> {data.fone}</p>
-            <p><strong>Cnpj:</strong> {data.cnpj}</p>
+            <p><strong>CNPJ:</strong> {data.cnpj}</p>
             <p><strong>Cidade:</strong> {data.city} - {data.uf}</p>
           </div>
         ))}
@@ -100,4 +100,4 @@ const Empresa = () => {
   );
 };
 
-export default Empresa;
+export default Ie;

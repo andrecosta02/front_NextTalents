@@ -18,16 +18,20 @@ export default function ConfirmEmail() {
       return;
     }
 
-    console.log(JSON.stringify({ token }))
+    // console.log(JSON.stringify({ token }))
 
-    const url = `http://${process.env.REACT_APP_IP_SERVER}:${process.env.REACT_APP_PORT_SERVER}/nexttalents/empresa/confirm-email`;
-    fetch(url, {
+    const url = `http://${process.env.REACT_APP_IP_SERVER}:${process.env.REACT_APP_PORT_SERVER}/nexttalents/enterprise/confirm-email`;
+    const res = fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ token })
     })
+      // const dataRes = res.json();
+      // console.log(dataRes)
+      
       .then(async (res) => {
         const data = await res.json();
+        console.log(data)
         if (res.ok) {
           setStatus("success");
           setMessage("E-mail confirmado com sucesso!");

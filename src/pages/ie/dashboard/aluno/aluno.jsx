@@ -15,7 +15,7 @@ const AlunoCrud = () => {
 
   const fetchStudents = async () => {
     try {
-      const url = `http://${process.env.REACT_APP_IP_SERVER}:${process.env.REACT_APP_PORT_SERVER}/nextTalents/student/list`;
+      const url = `http://${process.env.REACT_APP_IP_SERVER}:${process.env.REACT_APP_PORT_SERVER}/nextTalents/student/listFoIe`;
       const res = await fetch(url, {
         method: "get",
         headers: {

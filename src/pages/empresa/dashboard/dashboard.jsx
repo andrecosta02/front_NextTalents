@@ -3,7 +3,9 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getLoggedUser } from "../../../utils/auth";
 import "./dashboard.css";
-import AlunoCrud from "./alunos/alunos";
+import Alunos from "./alunos/alunos";
+import Ie from "./ie/ie";
+import Perfil from "./perfil/perfil";
 
 
 const Dashboard = () => {
@@ -15,7 +17,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (!user) {
-      navigate("/login");
+      navigate("/");
     }
   }, [user, navigate]);
 
@@ -26,12 +28,12 @@ const Dashboard = () => {
 
   const renderContent = () => {
     switch (selectedMenu) {
-      // case "sobre":
-      //   return <div><h2>Sobre Mim</h2><p>Informações do aluno para empresas (bio, experiências, etc.).</p></div>;
       case "alunos":
-        return <AlunoCrud />;
+        return <Alunos />;
+      case "ie":
+        return <Ie />;
       case "perfil":
-        return <div><h2>Meu Perfil</h2><p>Editar informações de cadastro do usuário (email, senha, notificações).</p></div>;
+        return <Perfil />;
       default:
         return null;
     }
@@ -56,26 +58,14 @@ const Dashboard = () => {
         <div className="menu-section">
           {/* <button className="menu-item" onClick={() => setSelectedMenu("sobre")}> */}
           <button className="menu-item" onClick={() => setSelectedMenu("alunos")}>
-            
             <span className="icon">📄</span>
             <span className="text">Alunos</span>
           </button>
-          {/* <button className="menu-item" onClick={() => setSelectedMenu("meus")}>
-            <span className="icon">📁</span>
-            <span className="text">Meus Projetos</span>
-          </button>
-          <button className="menu-item" onClick={() => setSelectedMenu("geral")}>
-            <span className="icon">🌐</span>
-            <span className="text">Projetos Geral</span>
-          </button>
-          <button className="menu-item" onClick={() => setSelectedMenu("instituicoes")}>
+
+          <button className="menu-item" onClick={() => setSelectedMenu("ie")}>
             <span className="icon">🏛️</span>
             <span className="text">Instituições</span>
           </button>
-          <button className="menu-item" onClick={() => setSelectedMenu("empresas")}>
-            <span className="icon">🏢</span>
-            <span className="text">Empresas</span>
-          </button> */}
         </div>
 
         <div className="menu-bottom">

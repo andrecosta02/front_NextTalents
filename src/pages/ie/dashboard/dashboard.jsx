@@ -84,7 +84,7 @@ const Dashboard = () => {
         <div className="menu-section">
           <button className="menu-item" onClick={() => setSelectedMenu("empresas")}>
 
-            <span className="icon">📄</span>
+            <span className="icon">🧑‍💼</span>
             <span className="text">Empresas</span>
           </button>
         </div>
