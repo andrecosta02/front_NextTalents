@@ -20,7 +20,7 @@ export default function ConfirmEmail() {
 
     console.log(JSON.stringify({ token }))
 
-    const url = `http://${process.env.REACT_APP_IP_SERVER}:${process.env.REACT_APP_PORT_SERVER}/nexttalents/enterprise/confirm-email`;
+    const url = `http://${process.env.REACT_APP_IP_SERVER}:${process.env.REACT_APP_PORT_SERVER}/nexttalents/empresa/confirm-email`;
     fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -31,7 +31,7 @@ export default function ConfirmEmail() {
         if (res.ok) {
           setStatus("success");
           setMessage("E-mail confirmado com sucesso!");
-          setTimeout(() => navigate("/enterprise/login"), 3000);
+          setTimeout(() => navigate("/empresa/login"), 3000);
         } else {
           setStatus("error");
           setMessage(data.message || "Erro ao confirmar e-mail.");

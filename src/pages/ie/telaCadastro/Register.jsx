@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import InputMask from "react-input-mask";
 import { useNavigate } from "react-router-dom";
-import PopupMessage from "../../../components/PopupMessage";
+import PopupMessage from "../../../components/popupMessage/PopupMessage";
 import "./Register.css";
 
 const Register = () => {
@@ -141,11 +141,11 @@ const Register = () => {
   };
 
   // reCAPTCHA callbacks
-  window.handleCaptchaVerify = function(token) {
+  window.handleCaptchaVerify = function (token) {
     if (token) setCaptchaVerified(true);
   };
 
-  window.handleCaptchaExpired = function() {
+  window.handleCaptchaExpired = function () {
     setCaptchaVerified(false);
   };
 

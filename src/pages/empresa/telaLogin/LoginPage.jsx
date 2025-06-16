@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import PopupMessage from "../../../components/PopupMessage";
+import PopupMessage from "../../../components/popupMessage/PopupMessage";
 import './LoginPage.css';
 
 const LoginPage = () => {
@@ -32,7 +32,7 @@ const LoginPage = () => {
         setShowPopup(true);
         setTimeout(() => {
           setShowPopup(false);
-          navigate("/enterprise/dashboard");
+          navigate("/empresa/dashboard");
         }, 1000);
 
       } else {
@@ -58,9 +58,6 @@ const LoginPage = () => {
         body: JSON.stringify({ email }),
       });
 
-      
-      console.log(response)
-
       if (response.ok) {
         // setMensagem('se existir cadastro um email sera enviado');
 
@@ -69,7 +66,7 @@ const LoginPage = () => {
         setShowPopup(true);
         setTimeout(() => {
           setShowPopup(false);
-          navigate("/enterprise/login");
+          // navigate("/empresa/login");
         }, 5000);
 
       } else {
@@ -111,7 +108,7 @@ const LoginPage = () => {
           required
         />
         <button onClick={handleLogin}>Acessar</button>
-        <div className="cadastro" onClick={() => navigate("/enterprise/register")} style={{ cursor: "pointer" }}>
+        <div className="cadastro" onClick={() => navigate("/empresa/register")} style={{ cursor: "pointer" }}>
           <p className="cadastro">Não possui login?</p>
         </div>
         <p className="esqueciSenha" onClick={handleForgtPass}>Esqueceu a senha?</p>

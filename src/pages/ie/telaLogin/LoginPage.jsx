@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import PopupMessage from "../../../components/PopupMessage";
+import PopupMessage from "../../../components/popupMessage/PopupMessage";
 import './LoginPage.css';
 
 const LoginPage = () => {
@@ -27,6 +27,7 @@ const LoginPage = () => {
 
       if (response.ok) {
         localStorage.setItem('token', data.token);
+        console.log(data.token)
         setPopupType("success");
         setMessage("Login realizado com sucesso!");
         setShowPopup(true);
@@ -39,13 +40,13 @@ const LoginPage = () => {
         setPopupType("error");
         setMessage(data.message);
         setShowPopup(true);
-        setTimeout(() => setShowPopup(false), 10000);
+        setTimeout(() => setShowPopup(false), 500);
       }
     } catch (err) {
       setPopupType("error");
       setMessage("Erro de conexão com o servidor.");
       setShowPopup(true);
-      setTimeout(() => setShowPopup(false), 10000);
+      setTimeout(() => setShowPopup(false), 5000);
     }
   };
 
@@ -81,7 +82,7 @@ const LoginPage = () => {
       setPopupType("error");
       setMessage("Erro de conexão com o servidor.");
       setShowPopup(true);
-      setTimeout(() => setShowPopup(false), 10000);
+      setTimeout(() => setShowPopup(false), 5000);
     }
   };
 

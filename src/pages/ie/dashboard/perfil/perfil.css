@@ -1,10 +1,10 @@
-/* aluno.css */
-.aluno-crud {
+/* perfil.css */
+.perfil-crud {
   padding: 16px;
   position: relative;
 }
 
-.aluno-header {
+.perfil-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -225,4 +225,38 @@ input:checked + .slider {
 
 input:checked + .slider:before {
   transform: translateX(20px);
+}
+
+/* Animação de entrada suave */
+@keyframes fadeInOverlay {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+@keyframes slideInModal {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-overlay {
+  animation: fadeInOverlay 0.3s ease forwards;
+}
+
+.modal-content {
+  animation: slideInModal 0.3s ease forwards;
+}
+
+.perfil-wrapper {
+  position: relative;
+  z-index: 100;
 }

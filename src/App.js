@@ -20,11 +20,11 @@ import IeNovaSenhaPage from './pages/ie/novaSenha/novaSenhaPage';
 import IeDashboard from './pages/ie/dashboard/dashboard';
 
 // Imports da empresa
-import empresaRegister from './pages/empresa/telaCadastro/Register';
-import empresaConfirmaEmail from './pages/empresa/confirmaEmail/confirmaEmail';
-import empresaTelaLogin from './pages/empresa/telaLogin/LoginPage';
-import empresaNovaSenhaPage from './pages/empresa/novaSenha/novaSenhaPage';
-import empresaDashboard from './pages/empresa/dashboard/dashboard';
+import EmpresaRegister from './pages/empresa/telaCadastro/Register';
+import EmpresaConfirmaEmail from './pages/empresa/confirmaEmail/confirmaEmail';
+import EmpresaTelaLogin from './pages/empresa/telaLogin/LoginPage';
+import EmpresaNovaSenhaPage from './pages/empresa/novaSenha/novaSenhaPage';
+import EmpresaDashboard from './pages/empresa/dashboard/dashboard';
 
 function App() {
   return (
@@ -63,14 +63,13 @@ function App() {
           }
         />
         {/* Rotas da empresa */}
-        <Route path="/empresa/register" element={< empresaRegister />} />
-        <Route path="/empresa/confirma-email" element={< empresaConfirmaEmail />} />
-        <Route path="/empresa/login" element={< empresaTelaLogin />} />
-        <Route path="/empresa/reset-senha" element={< empresaNovaSenhaPage />} />
-        {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+        <Route path="/empresa/register" element={< EmpresaRegister />} />
+        <Route path="/empresa/confirma-email" element={< EmpresaConfirmaEmail />} />
+        <Route path="/empresa/login" element={< EmpresaTelaLogin />} />
+        <Route path="/empresa/reset-senha" element={< EmpresaNovaSenhaPage />} />
         <Route path="/empresa/dashboard" element={
           <PrivateRoute>
-             <empresaDashboard />
+             <EmpresaDashboard />
           </PrivateRoute>
           }
         />

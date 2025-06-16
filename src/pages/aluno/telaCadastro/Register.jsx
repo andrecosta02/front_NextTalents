@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import InputMask from "react-input-mask";
 import { useNavigate } from "react-router-dom";
-import PopupMessage from "../../../components/PopupMessage";
+import PopupMessage from "../../../components/popupMessage/PopupMessage";
 import "./Register.css";
 
 const Register = () => {

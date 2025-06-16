@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import PopupMessage from "../../../components/PopupMessage";
+import PopupMessage from "../../../components/popupMessage/PopupMessage";
 import './LoginPage.css';
 
 const LoginPage = () => {

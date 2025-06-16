@@ -34,11 +34,12 @@ const NovaSenhaPage = () => {
       });
 
       const data = await response.json();
+      console.log(data)
 
       if (response.ok) {
         localStorage.setItem('token', data.token);
         setMensagem('Senha alterada com sucesso!');
-        navigate("/enterprise/login");
+        navigate("/empresa/login");
       } else {
         setMensagem(data.mensagem || 'Erro ao alterar a senha.');
       }

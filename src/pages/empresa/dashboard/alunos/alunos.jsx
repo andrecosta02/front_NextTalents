@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import PopupMessage from "../../../../components/PopupMessage";
+import PopupMessage from "../../../../components/popupMessage/PopupMessage";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-import "./aluno.css";
+import "./alunos.css";
 
 const AlunoCrud = () => {
   const overlayRef = useRef(null);
@@ -204,7 +204,7 @@ const AlunoCrud = () => {
 
   return (
     <div className="aluno-crud">
-      <h2>Alunoss</h2>
+      <h2>Alunos</h2>
 
       <div className="cards">
         {students.length === 0 ? (

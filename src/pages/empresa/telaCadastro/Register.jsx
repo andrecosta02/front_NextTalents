@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import InputMask from "react-input-mask";
 import { useNavigate } from "react-router-dom";
-import PopupMessage from "../../../components/PopupMessage";
+import PopupMessage from "../../../components/popupMessage/PopupMessage";
 import "./Register.css";
 
 const Register = () => {
@@ -110,7 +110,7 @@ const Register = () => {
         setTimeout(() => {
           setShowPopup(false);
           setMessage("");
-          navigate("/enterprise/login");
+          navigate("/empresa/login");
         }, 8000);
       } else if (res.status === 422 && data.errors) {
         setPopupType("error");
