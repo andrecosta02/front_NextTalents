@@ -27,6 +27,7 @@ const LoginPage = () => {
 
       if (response.ok) {
         localStorage.setItem('token', data.token);
+        localStorage.setItem('nome', data.nome);
         console.log(data.token)
         setPopupType("success");
         setMessage("Login realizado com sucesso!");

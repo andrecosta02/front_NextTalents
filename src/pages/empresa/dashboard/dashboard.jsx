@@ -47,6 +47,9 @@ const Dashboard = () => {
           alt="Logo"
           className="dashboard-logo"
         />
+          <div style={{ marginLeft: "auto", marginRight: "20px", fontWeight: "bold" }}>
+            Bem-vindo, {localStorage.getItem("nome")}!
+          </div>
       </header>
 
       <div className={`dashboard-menu ${menuOpen ? "open" : ""}`}>
